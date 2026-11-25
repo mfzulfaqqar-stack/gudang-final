@@ -20,3 +20,49 @@ export function fieldErrors(error) {
   }
   return out;
 }
+
+// ---------- Produk ----------
+const teks = (label) => z.string().trim().min(1, `${label} wajib diisi`);
+
+const angka = (label, { int = false } = {}) =>
+  z
+    .string()
+    .trim()
+    .min(1, `${label} wajib diisi`)
+    .transform((v) => Number(v))
+    .refine((n) => Number.isFinite(n), `${label} harus berupa angka`)
+    .refine((n) => n >= 0, `${label} tidak boleh negatif`)
+    .refine((n) => !int || Number.isInteger(n), `${label} harus bilangan bulat`);
+
+const productShape = {
+  nama: teks('Nama produk'),
+  category_id: z
+    .string()
+    .trim()
+    .min(1, 'Kategori wajib dipilih')
+    .transform((v) => Number(v))
+    .refine((n) => Number.isInteger(n) && n > 0, 'Kategori tidak valid'),
+  deskripsi: teks('Deskripsi'),
+  harga_beli: angka('Harga beli'),
+  harga_jual: angka('Harga jual'),
+  stok_minimum: angka('Stok minimum', { int: true }),
+  stok_low: angka('Stok low', { int: true }),
+  stok: angka('Jumlah stok', { int: true }),
+  unit: teks('Unit'),
+  lokasi_rak: teks('Lokasi rak'),
+  gambar: z.string().trim().optional(),
+};
+
+const pesanStok = {
+  message: 'Stok Low harus lebih besar dari stok minimum',
+  path: ['stok_low'],
+};
+
+export const productCreateSchema = z
+  .object({ sku: teks('SKU'), ...productShape })
+  .refine((d) => d.stok_low > d.stok_minimum, pesanStok);
+
+// SKU tidak bisa diubah saat edit
+export const productEditSchema = z
+  .object({ ...productShape })
+  .refine((d) => d.stok_low > d.stok_minimum, pesanStok);

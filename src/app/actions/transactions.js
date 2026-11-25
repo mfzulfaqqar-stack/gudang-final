@@ -156,7 +156,7 @@ export async function createTransaction(prev, formData) {
         `INSERT INTO transactions
          (no_transaksi, tipe, tanggal, restock_id, supplier_id, customer, catatan, created_by)
          VALUES ($1,$2,$3,$4,$5,$6,$7,$8) RETURNING id`,
-        [`TMP-${randomUUID()}`, tipe, tanggal, restockId, supplierId, customer, catatan, session.id]
+        [`TMP-${randomUUID().slice(0, 8)}`, tipe, tanggal, restockId, supplierId, customer, catatan, session.id]
       );
       const id = ins.rows[0].id;
       await c.query('UPDATE transactions SET no_transaksi = $2 WHERE id = $1', [

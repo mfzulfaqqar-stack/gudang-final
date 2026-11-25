@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Perpustakaan Kampus",
-  description: "Sistem manajemen perpustakaan",
+  title: 'Sistem Manajemen Gudang',
+  description: 'Manajemen inventori, transaksi, dan restock gudang',
 };
 
 export default function RootLayout({ children }) {

@@ -15,7 +15,7 @@ const FIELDS = [
   { name: 'stok', label: 'Jumlah stok saat ini', type: 'number' },
   { name: 'unit', label: 'Unit (pcs, box, kg, liter, dll)', type: 'text' },
   { name: 'lokasi_rak', label: 'Lokasi rak', type: 'text' },
-  { name: 'gambar', label: 'URL gambar produk (opsional)', type: 'text' },
+  { name: 'gambar', label: 'URL gambar produk', type: 'text' },
 ];
 
 export default function ProductForm({ action, kategori, defaults = {}, isEdit = false }) {

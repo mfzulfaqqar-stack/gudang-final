@@ -50,7 +50,11 @@ const productShape = {
   stok: angka('Jumlah stok', { int: true }),
   unit: teks('Unit'),
   lokasi_rak: teks('Lokasi rak'),
-  gambar: z.string().trim().optional(),
+  gambar: z
+  .string()
+  .trim()
+  .min(1, 'URL gambar wajib diisi')
+  .refine((v) => /^https?:\/\//i.test(v), 'URL gambar harus diawali http:// atau https://'),
 };
 
 const pesanStok = {

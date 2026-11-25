@@ -2,6 +2,7 @@ import { query } from '@/lib/db';
 import { requireRole } from '@/lib/auth';
 import { setSupplierStatus } from '@/app/actions/suppliers';
 import ActionForm from '@/app/components/ActionForm';
+import ExportButton from '@/app/components/ExportButton';
 
 export const dynamic = 'force-dynamic';
 
@@ -32,7 +33,10 @@ export default async function SupplierPage() {
   return (
     <main className="space-y-8 p-6">
       <section>
-        <h1 className="mb-3 text-2xl font-bold">Verifikasi Supplier</h1>
+        <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
+          <h1 className="text-2xl font-bold">Verifikasi Supplier</h1>
+          <ExportButton modul="supplier" />
+        </div>
         <h2 className="mb-2 text-lg font-semibold">Menunggu persetujuan ({pending.length})</h2>
 
         <div className="overflow-x-auto rounded border">

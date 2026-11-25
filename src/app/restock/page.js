@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { query } from '@/lib/db';
 import { requireRole } from '@/lib/auth';
 import RestockStatusBadge from '@/app/components/RestockStatusBadge';
+import ExportButton from '@/app/components/ExportButton';
 
 export const dynamic = 'force-dynamic';
 
@@ -50,11 +51,14 @@ export default async function RestockPage({ searchParams }) {
     <main className="space-y-4 p-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <h1 className="text-2xl font-bold">Restock Order</h1>
-        {session.role === 'manager' && (
-          <Link href="/restock/baru" className="rounded bg-blue-600 px-4 py-2 text-white">
-            + Buat restock order
-          </Link>
-        )}
+        <div className="flex flex-wrap gap-2">
+          {session.role !== 'supplier' && <ExportButton modul="restock" />}
+          {session.role === 'manager' && (
+            <Link href="/restock/baru" className="rounded bg-blue-600 px-4 py-2 text-white">
+              + Buat restock order
+            </Link>
+          )}
+        </div>
       </div>
 
       <form className="grid gap-2 sm:grid-cols-3">

@@ -4,6 +4,7 @@ import { requireRole } from '@/lib/auth';
 import { PRODUK_BASE_SQL, STATUS_LIST } from '@/lib/queries';
 import StockBadge from '@/app/components/StockBadge';
 import DeleteProductButton from '@/app/components/DeleteProductButton';
+import ExportButton from '@/app/components/ExportButton';
 
 export const dynamic = 'force-dynamic';
 
@@ -77,9 +78,12 @@ export default async function ProdukPage({ searchParams }) {
       <div className="flex flex-wrap items-center justify-between gap-3">
         <h1 className="text-2xl font-bold">Produk</h1>
         {canEdit && (
-          <Link href="/produk/tambah" className="rounded bg-blue-600 px-4 py-2 text-white">
-            + Tambah produk
-          </Link>
+          <div className="flex flex-wrap gap-2">
+            <ExportButton modul="produk" />
+            <Link href="/produk/tambah" className="rounded bg-blue-600 px-4 py-2 text-white">
+              + Tambah produk
+            </Link>
+          </div>
         )}
       </div>
 

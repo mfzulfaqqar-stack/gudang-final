@@ -3,11 +3,12 @@ import { query } from '@/lib/db';
 import { requireRole } from '@/lib/auth';
 import { deleteCategory } from '@/app/actions/categories';
 import ActionForm from '@/app/components/ActionForm';
+import ExportButton from '@/app/components/ExportButton';
 
 export const dynamic = 'force-dynamic';
 
 export default async function KategoriPage() {
-  await requireRole(['admin', 'manager']);
+  const session = await requireRole(['admin', 'manager']);
 
   const rows = (
     await query(
@@ -23,9 +24,12 @@ export default async function KategoriPage() {
     <main className="space-y-4 p-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <h1 className="text-2xl font-bold">Kategori</h1>
-        <Link href="/kategori/tambah" className="rounded bg-blue-600 px-4 py-2 text-white">
-          + Tambah kategori
-        </Link>
+        <div className="flex flex-wrap gap-2">
+          {session.role === 'admin' && <ExportButton modul="kategori" />}
+          <Link href="/kategori/tambah" className="rounded bg-blue-600 px-4 py-2 text-white">
+            + Tambah kategori
+          </Link>
+        </div>
       </div>
 
       <div className="overflow-x-auto rounded border">

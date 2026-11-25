@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { query } from '@/lib/db';
 import { requireRole } from '@/lib/auth';
 import TxStatusBadge from '@/app/components/TxStatusBadge';
+import ExportButton from '@/app/components/ExportButton';
 
 export const dynamic = 'force-dynamic';
 
@@ -68,16 +69,19 @@ export default async function TransaksiPage({ searchParams }) {
     <main className="space-y-4 p-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <h1 className="text-2xl font-bold">Transaksi</h1>
-        {session.role === 'staff' && (
-          <div className="flex gap-2">
-            <Link href="/transaksi/baru?tipe=masuk" className="rounded bg-blue-600 px-4 py-2 text-white">
-              + Barang masuk
-            </Link>
-            <Link href="/transaksi/baru?tipe=keluar" className="rounded bg-green-600 px-4 py-2 text-white">
-              + Barang keluar
-            </Link>
-          </div>
-        )}
+        <div className="flex flex-wrap gap-2">
+          <ExportButton modul="transaksi" />
+          {session.role === 'staff' && (
+            <>
+              <Link href="/transaksi/baru?tipe=masuk" className="rounded bg-blue-600 px-4 py-2 text-white">
+                + Barang masuk
+              </Link>
+              <Link href="/transaksi/baru?tipe=keluar" className="rounded bg-green-600 px-4 py-2 text-white">
+                + Barang keluar
+              </Link>
+            </>
+          )}
+        </div>
       </div>
 
       <div className="flex gap-1">

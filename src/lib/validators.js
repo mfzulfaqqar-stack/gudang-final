@@ -6,14 +6,8 @@ export const loginSchema = z.object({
 });
 
 export const registerSchema = z.object({
-  nama: z.string().trim().min(1, 'Nama wajib diisi'),
-  nim: z.string().trim().min(1, 'NIM wajib diisi'),
-  email: z
-    .string()
-    .trim()
-    .toLowerCase()
-    .email('Format email tidak valid')
-    .refine((e) => e.endsWith('.ac.id'), 'Gunakan email kampus (.ac.id)'),
+  nama: z.string().trim().min(1, 'Nama supplier wajib diisi'),
+  email: z.string().trim().toLowerCase().email('Format email tidak valid'),
   password: z.string().min(8, 'Password minimal 8 karakter'),
 });
 

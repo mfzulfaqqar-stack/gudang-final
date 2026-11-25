@@ -40,15 +40,10 @@ export default function LoginPage() {
         </button>
       </form>
 
-      <div className="mt-4 space-y-2 text-center text-sm">
-        <p>
-          Belum punya akun?{' '}
-          <Link href="/register" className="text-blue-600 underline">Daftar</Link>
-        </p>
-        <Link href="/" className="block rounded border p-2 hover:bg-gray-50">
-          Continue as Guest
-        </Link>
-      </div>
+      <p className="mt-4 text-center text-sm">
+        Supplier baru?{' '}
+        <Link href="/register" className="text-blue-600 underline">Daftar di sini</Link>
+      </p>
     </main>
   );
 }

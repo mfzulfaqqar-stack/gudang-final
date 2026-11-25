@@ -5,8 +5,9 @@ const secret = new TextEncoder().encode(process.env.JWT_SECRET);
 
 const rules = {
   '/admin': ['admin'],
-  '/pegawai': ['pegawai', 'admin'],
-  '/mahasiswa': ['mahasiswa'],
+  '/manager': ['manager'],
+  '/staff': ['staff'],
+  '/supplier': ['supplier'],
 };
 
 export async function proxy(req) {
@@ -27,5 +28,5 @@ export async function proxy(req) {
 }
 
 export const config = {
-  matcher: ['/admin/:path*', '/pegawai/:path*', '/mahasiswa/:path*'],
+  matcher: ['/admin/:path*', '/manager/:path*', '/staff/:path*', '/supplier/:path*'],
 };

@@ -75,5 +75,9 @@ export const productEditSchema = z
 export const categorySchema = z.object({
   nama: teks('Nama kategori'),
   deskripsi: teks('Deskripsi'),
-  gambar: z.string().trim().optional(),
+  gambar: z
+    .string()
+    .trim()
+    .min(1, 'URL gambar wajib diisi')
+    .refine((v) => /^https?:\/\//i.test(v), 'URL gambar harus diawali http:// atau https://'),
 });

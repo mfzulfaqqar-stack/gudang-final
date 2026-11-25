@@ -122,6 +122,7 @@ export default async function ProdukPage({ searchParams }) {
         <table className="w-full text-left text-sm">
           <thead className="bg-gray-50">
             <tr>
+              <th className="p-3">Gambar</th>
               <th className="p-3">SKU</th>
               <th className="p-3">Nama</th>
               <th className="p-3">Kategori</th>
@@ -134,13 +135,23 @@ export default async function ProdukPage({ searchParams }) {
           <tbody>
             {rows.length === 0 && (
               <tr>
-                <td colSpan={7} className="p-6 text-center text-gray-500">
+                <td colSpan={8} className="p-6 text-center text-gray-500">
                   Tidak ada produk.
                 </td>
               </tr>
             )}
             {rows.map((p) => (
               <tr key={p.id} className="border-t">
+                  <td className="p-3">
+                  {p.gambar ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={p.gambar} alt={p.nama} className="h-12 w-12 rounded object-cover" />
+                  ) : (
+                    <div className="flex h-12 w-12 items-center justify-center rounded bg-gray-100 text-xs text-gray-400">
+                      -
+                    </div>
+                  )}
+                </td>
                 <td className="p-3 font-mono">{p.sku}</td>
                 <td className="p-3">{p.nama}</td>
                 <td className="p-3">{p.kategori}</td>

@@ -14,7 +14,7 @@ export const STATUS_LIST = ['Out of Stock', 'Severe', 'Low', 'Normal'];
 // Dasar query daftar produk. Dibungkus sebagai subquery (alias x) agar
 // status_stok bisa dipakai untuk filter dan hitung total.
 export const PRODUK_BASE_SQL = `
-  SELECT p.id, p.sku, p.nama, p.stok, p.unit, p.lokasi_rak, p.created_at,
+  SELECT p.id, p.sku, p.nama, p.stok, p.unit, p.lokasi_rak, p.created_at, p.gambar,
          c.id AS category_id, c.nama AS kategori,
          ${STATUS_STOK_SQL} AS status_stok
   FROM products p

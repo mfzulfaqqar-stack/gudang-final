@@ -76,3 +76,6 @@ INSERT INTO transaction_items (transaction_id, product_id, qty) VALUES
 (4, 5, 40),                -- keluar shipped
 (5, 2, 5),                 -- keluar pending
 (6, 1, 100);               -- keluar rejected
+
+-- Gambar contoh untuk semua produk (placeholder)
+UPDATE products SET gambar = 'https://placehold.co/400x400.png?text=' || sku;

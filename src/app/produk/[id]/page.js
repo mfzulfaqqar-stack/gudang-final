@@ -62,6 +62,10 @@ export default async function DetailProdukPage({ params }) {
       </div>
 
       <p className="text-gray-700">{p.deskripsi}</p>
+      {p.gambar && (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img src={p.gambar} alt={p.nama} className="max-h-64 rounded border object-contain" />
+      )}
 
       <dl className="grid gap-3 sm:grid-cols-2">
         {info.map(([k, v]) => (

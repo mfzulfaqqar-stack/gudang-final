@@ -78,6 +78,6 @@ export const categorySchema = z.object({
   gambar: z
     .string()
     .trim()
-    .min(1, 'URL gambar wajib diisi')
-    .refine((v) => /^https?:\/\//i.test(v), 'URL gambar harus diawali http:// atau https://'),
+    .optional()
+    .refine((v) => !v || /^https?:\/\//i.test(v), 'URL gambar harus diawali http:// atau https://'),
 });

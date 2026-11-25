@@ -9,6 +9,7 @@ const MENU = {
     ['/transaksi', 'Transaksi'],
     ['/restock', 'Restock'],
     ['/kategori', 'Kategori'],
+    ['/admin/supplier', 'Supplier'],
   ],
   manager: [
     ['/manager', 'Dashboard'],

@@ -66,3 +66,10 @@ export const productCreateSchema = z
 export const productEditSchema = z
   .object({ ...productShape })
   .refine((d) => d.stok_low > d.stok_minimum, pesanStok);
+
+  // ---------- Kategori ----------
+export const categorySchema = z.object({
+  nama: teks('Nama kategori'),
+  deskripsi: teks('Deskripsi'),
+  gambar: z.string().trim().optional(),
+});

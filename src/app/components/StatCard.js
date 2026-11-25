@@ -1,15 +1,22 @@
 const TONE = {
-  default: 'bg-white',
-  warn: 'border-yellow-300 bg-yellow-50',
-  danger: 'border-red-300 bg-red-50',
-  muted: 'bg-gray-50',
+  default: 'border-slate-200 bg-white',
+  warn: 'border-amber-200 bg-amber-50',
+  danger: 'border-red-200 bg-red-50',
+  muted: 'border-slate-200 bg-slate-100',
+};
+
+const VALUE = {
+  default: 'text-slate-900',
+  warn: 'text-amber-700',
+  danger: 'text-red-700',
+  muted: 'text-slate-600',
 };
 
 export default function StatCard({ label, value, tone = 'default' }) {
   return (
-    <div className={`rounded border p-4 ${TONE[tone]}`}>
-      <p className="text-xs text-gray-500">{label}</p>
-      <p className="mt-1 text-2xl font-bold">{value}</p>
+    <div className={`rounded-xl border p-5 shadow-sm ${TONE[tone]}`}>
+      <p className="text-xs font-medium uppercase tracking-wide text-slate-500">{label}</p>
+      <p className={`mt-2 text-3xl font-bold ${VALUE[tone]}`}>{value}</p>
     </div>
   );
 }

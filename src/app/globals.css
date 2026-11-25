@@ -1,26 +1,125 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Warna utama: indigo (menggantikan semua class blue-*) */
+  --color-blue-50: #eef2ff;
+  --color-blue-100: #e0e7ff;
+  --color-blue-200: #c7d2fe;
+  --color-blue-500: #6366f1;
+  --color-blue-600: #4f46e5;
+  --color-blue-700: #4338ca;
+  --color-blue-800: #3730a3;
+
+  /* Warna netral: slate (menggantikan semua class gray-*) */
+  --color-gray-50: #f8fafc;
+  --color-gray-100: #f1f5f9;
+  --color-gray-200: #e2e8f0;
+  --color-gray-300: #cbd5e1;
+  --color-gray-400: #94a3b8;
+  --color-gray-500: #64748b;
+  --color-gray-600: #475569;
+  --color-gray-700: #334155;
+  --color-gray-800: #1e293b;
+
+  /* Sudut lebih halus untuk class "rounded" */
+  --radius-sm: 0.5rem;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  /* Warna border bawaan Tailwind v4 adalah hitam, ganti jadi abu-abu muda */
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: #e2e8f0;
   }
-}
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  html {
+    color-scheme: light;
+  }
+
+  body {
+    @apply bg-slate-50 text-slate-800 antialiased;
+    font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  }
+
+  h1 {
+    @apply text-2xl font-bold tracking-tight text-slate-900;
+  }
+
+  h2 {
+    @apply text-lg font-semibold text-slate-900;
+  }
+
+  label {
+    @apply text-slate-700;
+  }
+
+  /* Tombol dan link bertombol */
+  button,
+  select {
+    @apply cursor-pointer;
+  }
+
+  button {
+    @apply font-medium transition;
+  }
+
+  button:disabled {
+    @apply cursor-not-allowed;
+  }
+
+  button:not(:disabled):hover,
+  a[class*="bg-"]:hover {
+    filter: brightness(0.94);
+  }
+
+  /* Form */
+  input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]),
+  select,
+  textarea {
+    @apply rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm shadow-sm outline-none transition;
+  }
+
+  input:focus,
+  select:focus,
+  textarea:focus {
+    @apply border-indigo-500 ring-2 ring-indigo-200;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    @apply text-slate-400;
+  }
+
+  input:disabled {
+    @apply cursor-not-allowed bg-slate-100 text-slate-500;
+  }
+
+  /* Tabel */
+  table {
+    @apply w-full text-sm;
+  }
+
+  thead {
+    @apply bg-slate-50;
+  }
+
+  th {
+    @apply text-xs font-semibold uppercase tracking-wide text-slate-500;
+  }
+
+  tbody tr {
+    @apply transition-colors hover:bg-slate-50;
+  }
+
+  /* Pembungkus tabel dan kotak info menjadi kartu putih */
+  .overflow-x-auto {
+    @apply bg-white shadow-sm;
+  }
+
+  dl > div {
+    @apply bg-white shadow-sm;
+  }
 }
